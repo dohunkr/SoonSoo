@@ -22,7 +22,6 @@ export async function setupAllPanels(env: Env) {
           title: '🔔 SoonSoo 알림 설정 채널',
           description: `원하시는 소식을 받고싶으신 브랜드를 선택하여 주세요.\n*알람 역할을 부여받으신 상태에서 선택시 해당 역할이 삭제됩니다.*`,
           color: 0x5865f2,
-          thumbnail: { url: 'https://i.imgur.com/8Q9Z1qZ.png' },
         },
       ],
       components: [
