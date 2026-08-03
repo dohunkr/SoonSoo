@@ -83,7 +83,7 @@ export async function handleDealerCall(interaction: any, env: Env) {
   return {
     type: 4,
     data: {
-      content: '✅ **딜러 호출이 성공적으로 발송되었습니다.**\n딜러가 수락하는 대로 DM으로 방문 알림이 전달됩니다.',
+      content: '✅ **딜러 호출이 성공적으로 발송되었습니다.**\n딜러의 DM으로 방문 알림이 전달됩니다.',
       flags: 64,
     },
   };
