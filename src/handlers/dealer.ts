@@ -35,11 +35,10 @@ export async function handleDealerCall(interaction: any, env: Env) {
   const callerMention = `<@${userId}>`;
   const callerName = member.user.global_name || member.user.username;
 
-  // Send DM to each dealer concurrently
   const dmTasks = dealers.map(async (dealer: any) => {
     try {
       const dmChannel = await createDMChannel(dealer.user.id, env);
-      const dmMessage = await sendMessage(
+      await sendMessage(
         dmChannel.id,
         {
           embeds: [
@@ -66,13 +65,6 @@ export async function handleDealerCall(interaction: any, env: Env) {
         },
         env
       );
-
-      // Add checkmark reaction as specified in requirements
-      try {
-        await addReaction(dmChannel.id, dmMessage.id, '✅', env);
-      } catch (err) {
-        console.error('Failed to add reaction:', err);
-      }
     } catch (e) {
       console.error(`Failed to send DM to dealer ${dealer.user.id}:`, e);
     }
