@@ -1,6 +1,6 @@
-import { registerCommands } from './src/discord/api';
-import { COMMANDS } from './src/commands/setup';
-import { Env } from './src/types';
+import { registerCommands } from '../src/discord/api';
+import { COMMANDS } from '../src/commands/setup';
+import { Env } from '../src/types';
 import * as dotenv from 'dotenv';
 dotenv.config();
 
