@@ -31,31 +31,31 @@ export async function setupAllPanels(env: Env) {
           components: [
             {
               type: 2,
-              style: 1, // Primary (Blue)
+              style: 1, // Primary (Blurple/Blue)
               label: '🔔 SoonSoo Casino',
               custom_id: 'btn_role_casino',
             },
             {
               type: 2,
-              style: 1,
+              style: 3, // Success (Green)
               label: '🔔 SoonSoo Gallery',
               custom_id: 'btn_role_gallery',
             },
             {
               type: 2,
-              style: 1,
+              style: 2, // Secondary (Grey)
               label: '🔔 This is eat',
               custom_id: 'btn_role_thisiseat',
             },
             {
               type: 2,
-              style: 1,
+              style: 4, // Danger (Red)
               label: '🔔 SoonSoo Modeling',
               custom_id: 'btn_role_modeling',
             },
             {
               type: 2,
-              style: 1,
+              style: 1, // Primary (Blurple/Blue)
               label: '🔔 Double S Pacific',
               custom_id: 'btn_role_pacific',
             },
