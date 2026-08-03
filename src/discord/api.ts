@@ -62,6 +62,36 @@ export async function sendMessage(channelId: string, data: any, env: Env) {
   }, env);
 }
 
+// Get recent channel messages
+export async function getChannelMessages(channelId: string, limit = 50, env: Env) {
+  return discordApi(`/channels/${channelId}/messages?limit=${limit}`, {
+    method: 'GET',
+  }, env);
+}
+
+// Delete Message
+export async function deleteMessage(channelId: string, messageId: string, env: Env) {
+  return discordApi(`/channels/${channelId}/messages/${messageId}`, {
+    method: 'DELETE',
+  }, env);
+}
+
+// Purge bot's previous messages in channel
+export async function clearChannelBotMessages(channelId: string, env: Env) {
+  try {
+    const messages = await getChannelMessages(channelId, 50, env);
+    if (Array.isArray(messages)) {
+      for (const msg of messages) {
+        if (msg.author && msg.author.id === env.APPLICATION_ID) {
+          await deleteMessage(channelId, msg.id, env);
+        }
+      }
+    }
+  } catch (err) {
+    console.error(`Failed to clear bot messages in ${channelId}:`, err);
+  }
+}
+
 // Add Reaction to Message
 export async function addReaction(channelId: string, messageId: string, emoji: string, env: Env) {
   const encodedEmoji = encodeURIComponent(emoji);

@@ -1,4 +1,4 @@
-import { registerCommands, sendMessage } from '../discord/api';
+import { registerCommands, sendMessage, clearChannelBotMessages } from '../discord/api';
 import { Env } from '../types';
 
 export const COMMANDS = [
@@ -13,7 +13,8 @@ export const COMMANDS = [
 ];
 
 export async function setupAllPanels(env: Env) {
-  // 1. Role Setup Panel
+  // 1. Role Setup Panel - Clear previous messages first
+  await clearChannelBotMessages(env.CHANNEL_ROLE_SETUP, env);
   await sendMessage(
     env.CHANNEL_ROLE_SETUP,
     {
@@ -66,6 +67,7 @@ export async function setupAllPanels(env: Env) {
   );
 
   // 2. Dealer Call Panel
+  await clearChannelBotMessages(env.CHANNEL_DEALER_CALL, env);
   await sendMessage(
     env.CHANNEL_DEALER_CALL,
     {
@@ -94,6 +96,7 @@ export async function setupAllPanels(env: Env) {
   );
 
   // 3. SoonSoo Gallery Request Panel
+  await clearChannelBotMessages(env.CHANNEL_GALLERY_REQ, env);
   await sendMessage(
     env.CHANNEL_GALLERY_REQ,
     {
@@ -122,6 +125,7 @@ export async function setupAllPanels(env: Env) {
   );
 
   // 4. SoonSoo Modeling Request Panel
+  await clearChannelBotMessages(env.CHANNEL_MODELING_REQ, env);
   await sendMessage(
     env.CHANNEL_MODELING_REQ,
     {
