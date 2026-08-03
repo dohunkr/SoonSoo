@@ -1,10 +1,31 @@
-import { verifyKey } from 'discord-interactions';
 import { Env } from './types';
 import { handleRoleButton } from './handlers/roles';
 import { handleDealerCall, handleDealerAccept } from './handlers/dealer';
 import { handleGalleryModalOpen, handleGalleryModalSubmit, handleGalleryClose } from './handlers/gallery';
 import { handleModelingModalOpen, handleModelingModalSubmit, handleModelingClose } from './handlers/modeling';
 import { handleSetupPanelsCommand, registerAppCommands } from './commands/setup';
+
+async function verifyDiscordRequest(rawBody: string, signature: string, timestamp: string, hexPublicKey: string): Promise<boolean> {
+  try {
+    const encoder = new TextEncoder();
+    const publicBuffer = new Uint8Array(hexPublicKey.match(/.{1,2}/g)!.map(byte => parseInt(byte, 16)));
+    const signatureBuffer = new Uint8Array(signature.match(/.{1,2}/g)!.map(byte => parseInt(byte, 16)));
+    const messageData = encoder.encode(timestamp + rawBody);
+
+    const key = await crypto.subtle.importKey(
+      'raw',
+      publicBuffer,
+      { name: 'Ed25519', namedCurve: 'Ed25519' },
+      false,
+      ['verify']
+    );
+
+    return await crypto.subtle.verify('Ed25519', key, signatureBuffer, messageData);
+  } catch (e) {
+    console.error('Signature verification error:', e);
+    return false;
+  }
+}
 
 export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
@@ -20,7 +41,7 @@ export default {
       return new Response('Bad request signature headers', { status: 401 });
     }
 
-    const isValidRequest = verifyKey(rawBody, signature, timestamp, env.PUBLIC_KEY);
+    const isValidRequest = await verifyDiscordRequest(rawBody, signature, timestamp, env.PUBLIC_KEY);
     if (!isValidRequest) {
       return new Response('Invalid request signature', { status: 401 });
     }
