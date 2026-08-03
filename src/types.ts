@@ -1,0 +1,33 @@
+export interface Env {
+  BOT_TOKEN: string;
+  APPLICATION_ID: string;
+  PUBLIC_KEY: string;
+  GUILD_ID: string;
+
+  CHANNEL_ROLE_SETUP: string;
+  CHANNEL_DEALER_CALL: string;
+  CHANNEL_GALLERY_REQ: string;
+  CHANNEL_MODELING_REQ: string;
+
+  CAT_GALLERY_ACTIVE: string;
+  CAT_GALLERY_CLOSED: string;
+  CAT_MODELING_ACTIVE: string;
+  CAT_MODELING_CLOSED: string;
+
+  ROLE_NOTIF_CASINO: string;
+  ROLE_NOTIF_GALLERY: string;
+  ROLE_NOTIF_THISISEAT: string;
+  ROLE_NOTIF_MODELING: string;
+  ROLE_NOTIF_PACIFIC: string;
+
+  ROLE_CASINO_DEALER: string;
+  ROLE_MODELING_DESIGNER: string;
+  ROLE_GROUP_STAFF: string;
+  ROLE_OWNER: string;
+  ROLE_GALLERY_ARTIST: string;
+  ROLE_GALLERY_MANAGER: string;
+  ROLE_CASINO_MANAGER: string;
+  ROLE_PLATINUM_MEMBER: string;
+
+  TICKET_KV?: KVNamespace;
+}
