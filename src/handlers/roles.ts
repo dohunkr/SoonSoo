@@ -39,7 +39,7 @@ export async function handleRoleButton(interaction: any, env: Env) {
     return {
       type: 4,
       data: {
-        content: `🔔 <@&${targetRoleId}> 알림 역할이 부여되었습니다!`,
+        content: `🔔 <@&${targetRoleId}> 알림 역할이 부여되었습니다.`,
         flags: 64,
       },
     };
