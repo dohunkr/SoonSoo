@@ -36,5 +36,5 @@ ROLE_CASINO_MANAGER = "1464720417427161136"
 ROLE_PLATINUM_MEMBER = "1532447800326095028"
 
 kv_namespaces = [
-  { binding = "TICKET_KV", id = "soonsoo_ticket_kv" }
+  { binding = "TICKET_KV", id = "914e7e9db3e645d082ea20cd6a0d359f" }
 ]
